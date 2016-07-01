@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   entry: './app/src/app.js',
@@ -25,7 +26,14 @@ module.exports = {
         query: {
           presets: ['es2015','react'],
         }
-      },
+      }
     ]
-  }
+  },
+  plugins: [
+     new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: true
+      },comments: false
+     })
+]
 }
